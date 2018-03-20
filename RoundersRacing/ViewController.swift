@@ -12,6 +12,12 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var countdownLabel: UILabel!
     
+    @IBOutlet weak var settingsButton: UIButton!
+    
+    @IBAction func settingsButtonPushed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "settingsSegue", sender: self)
+    }
+    
     @IBOutlet weak var raceSwitch: UISwitch!
     @IBAction func addBetButtonPushed(_ sender: UIButton) {
         SharedBetManager.shared.potSize += 1
@@ -41,6 +47,7 @@ class ViewController: UIViewController {
 
     @objc
     func startCountdownTimer() {
+        
         let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (time) in
             
             SharedBetManager.shared.seconds -= 1
@@ -59,17 +66,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userNameLabel.text = "User: \(SharedBetManager.shared.userName)"
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.setButtonStatus(_:)),name:NSNotification.Name(rawValue: "setButtonStatus"), object: nil)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        userBalance.text = "Balance: \(SharedBetManager.shared.userBalance)"
-        potSizeLabel.text = "Bet Count: \(Int(SharedBetManager.shared.potSize))"
-        potValueLabel.text = "Pot Value: \(SharedBetManager.shared.potValue)"
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let userName = FirebaseAuth.shared.currentUserName {
+            userNameLabel.text = "User: \(userName)"
+        }
+        if let starterTokenBalance = SharedBetManager.shared.userBalances["starterTokens"] {
+            userBalance.text = "Balance: \(starterTokenBalance)"
+        }
+            potSizeLabel.text = "Bet Count: \(Int(SharedBetManager.shared.potSize))"
+            potValueLabel.text = "Pot Value: \(SharedBetManager.shared.potValue)"
     }
    
 
@@ -115,27 +127,34 @@ class ViewController: UIViewController {
     }
     
     @IBAction func watchVideoButtonPushed(_ sender: UIButton) {
-        if SharedBetManager.shared.isRaceActive {
-        self.performSegue(withIdentifier: "watchVideoSegue", sender: self)
-        } else if SharedBetManager.shared.currentBet {
-            UIView.animate(withDuration: 0.25, animations: {
-                self.watchVideoButton.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
-            }, completion: { (success) in
+
+        if let userStarterTokenBalance = SharedBetManager.shared.userBalances["starterTokens"] {
+            if SharedBetManager.shared.isRaceActive {
+                self.performSegue(withIdentifier: "watchVideoSegue", sender: self)
+            } else if SharedBetManager.shared.currentBet {
                 UIView.animate(withDuration: 0.25, animations: {
-                    self.watchVideoButton.transform = CGAffineTransform.identity
+                    self.watchVideoButton.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+                }, completion: { (success) in
+                    UIView.animate(withDuration: 0.25, animations: {
+                        self.watchVideoButton.transform = CGAffineTransform.identity
+                    })
                 })
-            })
-        } else if SharedBetManager.shared.userBalance < 1 {
-            UIView.animate(withDuration: 0.25, animations: {
-                self.watchVideoButton.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
-            }, completion: { (success) in
+            } else if userStarterTokenBalance < 1 {
                 UIView.animate(withDuration: 0.25, animations: {
-                    self.watchVideoButton.transform = CGAffineTransform.identity
+                    self.watchVideoButton.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+                }, completion: { (success) in
+                    UIView.animate(withDuration: 0.25, animations: {
+                        self.watchVideoButton.transform = CGAffineTransform.identity
+                    })
                 })
-            })
-        } else {
-            self.performSegue(withIdentifier: "placeBetSegue", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "placeBetSegue", sender: self)
+            }
         }
+    }
+    
+    deinit {
+        print("front View Deinit")
     }
 
 }

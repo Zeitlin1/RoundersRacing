@@ -16,7 +16,9 @@ class SharedBetManager {
     
     var userName = "Mr. Jones"
     
-    var userBalance: Double = 100
+    var userBalances: [String: Double] = [:]
+    
+    var betHistory: [Bet] = []
     
     var potValue: Double = 0
     
@@ -48,6 +50,7 @@ class SharedBetManager {
     }
     
     private init() {
+        print("sharedBetManager online")
         lineup = ["marble1", "marble2", "marble3"]
     }
     
@@ -70,14 +73,39 @@ class SharedBetManager {
              
     func placeNewBet(completion: ()-> Void) {
         if currentBet == false {
+            
             currentBet = true
-            self.userBalance -= 1
-            self.potValue += 1
-            self.potSize += 1
+            
+            if let oldBalance = self.userBalances["starterTokens"] {
+            
+                   let newBalance = (oldBalance - 1.00)
+            
+            self.userBalances["starterTokens"] = newBalance
+                
+            let newBet = Bet(betValue: (oldBalance - newBalance),
+                             raceID: "\(Date().timeIntervalSince1970)" + "raceIDGoesHere",
+                             betID: "\(Date().timeIntervalSince1970)" + "betIDGoesHere",
+                             betDate: "\(Date().timeIntervalSince1970)",
+                             result: false)
+                
+            self.betHistory.append(newBet)
+                
+                FirebaseAuth.shared.updateUserBetInfo(userBalances: self.userBalances, betHistory: betHistory, completion: {
+                    
+                    self.potValue += 1
+                    
+                    self.potSize += 1
+                    
+                })
+            }
+            
         } else {
             print("bet was already placed")
         }
         completion()
     }
     
+    deinit {
+        print("deinit bet manager")
+    }
 }
