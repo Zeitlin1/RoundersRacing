@@ -21,9 +21,7 @@ import Firebase
 class LoginScreenViewController: UIViewController, UITextFieldDelegate {
     
     let sharedFirebaseAuth = FirebaseAuth.shared
-    
-    //    let sharedFirebaseDataStore = FirebaseDataStore.shared
-    
+
     @IBOutlet weak var loginButton: UIButton!
     
     @IBOutlet weak var emailTextView: UITextField!
@@ -37,9 +35,7 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var createAccountButtonView: UIButton!
     
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) { /** Not connected to an Outlet and nothing goes here **/ }
-    
-    //    @IBAction func unwindToLogin(segue: UIStoryboardSegue) { /** Not connected to an Outlet and nothing goes here **/ }
-    
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -52,71 +48,38 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
         emailTextView.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor.grayBarelyVisible])
         
         passwordTextView.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.grayBarelyVisible])
+ 
+                    titleLabel.textColor = UIColor.purple
+                    self.view.bringSubview(toFront: titleLabel)
         
-        //        titleLabel.snp.makeConstraints { (make) in
-        //            make.left.equalTo(self.view)
-        //            make.right.equalTo(self.view)
-        //            make.top.equalTo(self.view)
-        //            make.height.equalTo(self.view).multipliedBy(0.3)
-        //            titleLabel.textColor = UIColor.purple
-        //            self.view.bringSubview(toFront: titleLabel)
-        //        }
-        //
-        //        emailTextView.snp.makeConstraints { (make) in
-        //            make.centerX.equalTo(self.view)
-        //            make.top.equalTo(titleLabel.snp.bottom).offset(10)
-        //            make.width.equalTo(self.view).multipliedBy(0.75)
-        //            make.height.equalTo(UIViewController.textFieldHeight)
-        //            emailTextView.textColor = UIColor.black
-        //            emailTextView.layer.shadowColor = UIColor.backgroundBlack.cgColor
-        //            emailTextView.layer.shadowOffset = CGSize(width: 1, height: 1)
-        //            emailTextView.layer.shadowRadius = 5
-        //            emailTextView.layer.shadowOpacity = 1
-        //            emailTextView.layer.cornerRadius = UIViewController.cornerRadius
-        //            self.view.bringSubview(toFront: emailTextView)
-        //            emailTextView.backgroundColor = UIColor.backgroundWhite
-        //        }
-        //
-        //        passwordTextView.snp.makeConstraints { (make) in
-        //            make.centerX.equalTo(self.view)
-        //            make.top.equalTo(emailTextView.snp.bottom).offset(30)
-        //            make.width.equalTo(self.view).multipliedBy(0.75)
-        //            make.height.equalTo(UIViewController.textFieldHeight)
-        //            passwordTextView.textColor = UIColor.black
-        //            passwordTextView.layer.shadowColor = UIColor.backgroundBlack.cgColor
-        //            passwordTextView.layer.shadowOffset = CGSize(width: 1, height: 1)
-        //            passwordTextView.layer.shadowRadius = 5
-        //            passwordTextView.layer.shadowOpacity = 1
-        //            passwordTextView.layer.cornerRadius = UIViewController.cornerRadius
-        //            self.view.bringSubview(toFront: passwordTextView)
-        //            passwordTextView.backgroundColor = UIColor.backgroundWhite
-        //        }
-        //
-        //        loginButton.snp.makeConstraints { (make) in
-        //            make.centerX.equalTo(self.view)
-        //            make.top.equalTo(forgotPWLabel.snp.bottom).offset(20)
-        //            make.width.equalTo(self.view).multipliedBy(0.35)
-        //            make.height.equalTo(UIViewController.textFieldHeight)
-        //            loginButton.layer.cornerRadius = UIViewController.cornerRadius
-        //            loginButton.backgroundColor = UIColor.neonBlue.withAlphaComponent(0.75)
-        //            loginButton.setTitleColor(UIColor.white, for: .normal)
-        //            loginButton.setTitle("Member's Area", for: .normal)
-        //            self.view.bringSubview(toFront: loginButton)
-        //        }
-        //
-        //        forgotPWLabel.snp.makeConstraints { (make) in
-        //            make.right.equalTo(passwordTextView.snp.right)
-        //            make.top.equalTo(passwordTextView.snp.bottom)
-        //            make.width.equalTo(passwordTextView.snp.width).multipliedBy(0.5)
-        //            self.view.bringSubview(toFront: forgotPWLabel)
-        //        }
-        //
-        //        createAccountButtonView.snp.makeConstraints { (make) in
-        //            make.right.equalTo(emailTextView.snp.right)
-        //            make.top.equalTo(emailTextView.snp.bottom)
-        //            make.width.equalTo(passwordTextView.snp.width).multipliedBy(0.5)
-        //            self.view.bringSubview(toFront: createAccountButtonView)
-        //        }
+                    emailTextView.textColor = UIColor.black
+                    emailTextView.layer.shadowColor = UIColor.backgroundBlack.cgColor
+                    emailTextView.layer.shadowOffset = CGSize(width: 1, height: 1)
+                    emailTextView.layer.shadowRadius = 5
+                    emailTextView.layer.shadowOpacity = 1
+                    emailTextView.layer.cornerRadius = UIViewController.cornerRadius
+                    self.view.bringSubview(toFront: emailTextView)
+                    emailTextView.backgroundColor = UIColor.backgroundWhite
+       
+                    passwordTextView.textColor = UIColor.black
+                    passwordTextView.layer.shadowColor = UIColor.backgroundBlack.cgColor
+                    passwordTextView.layer.shadowOffset = CGSize(width: 1, height: 1)
+                    passwordTextView.layer.shadowRadius = 5
+                    passwordTextView.layer.shadowOpacity = 1
+                    passwordTextView.layer.cornerRadius = UIViewController.cornerRadius
+                    self.view.bringSubview(toFront: passwordTextView)
+                    passwordTextView.backgroundColor = UIColor.backgroundWhite
+       
+                    loginButton.layer.cornerRadius = UIViewController.cornerRadius
+                    loginButton.backgroundColor = UIColor.neonBlue.withAlphaComponent(0.75)
+                    loginButton.setTitleColor(UIColor.white, for: .normal)
+                    loginButton.setTitle("Member's Area", for: .normal)
+                    self.view.bringSubview(toFront: loginButton)
+        
+                    self.view.bringSubview(toFront: forgotPWLabel)
+        
+                    self.view.bringSubview(toFront: createAccountButtonView)
+     
         
         /// check to see if currentUser entity is still logged in.  if they are, bypass loginscreen.  This gets set when the user signs in manually the first time.  stored in coreData.
         
@@ -136,22 +99,14 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "loginTabBarSegue" {
             
             print("login segue used")
-            //
-            //            CentralDataStore.resetCurrentCentralDataStore()
-            //
-            //            MPCManager.resetCurrentMPCManager()
-            
+           
         }
         
         /// Auto-Login
         if segue.identifier == "skipLoginSegue" {
             
             print("user found segue to dash")
-            
-            //            CentralDataStore.resetCurrentCentralDataStore()
-            //
-            //            MPCManager.resetCurrentMPCManager()
-            
+           
             /// NOT SYNCING TO CLOUD HERE GIVES ABILITY TO HAVE AN OFFLINE MODE.
             /// MAKE AN OPTION FOR USER IF HE OR SHE WANTS OFFLINE MODE.
         }
@@ -197,15 +152,25 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
                                         if let verifiedUserName = serializedData["userName"] as? String,
                                         let verifiedEmailAddress = serializedData["emailAddress"] as? String,
                                         let verifiedUserProfilePicRef = serializedData["profilePicRef"] as? String,
-                                        let verifiedUserBetHistory = serializedData["betHistory"] as? [String: Any],
+                                        let verifiedUserBetHistory = serializedData["betHistory"] as? [[String: Any]],
                                         let verifiedUserBalances = serializedData["tokenBalances"] as? [String: Double] {
+                                            
+                                            var newBetHistory = [Bet]()
+                                            
+                                            for betDictionary in verifiedUserBetHistory {
+                                                
+                                                let serializedBet = FirebaseAuth.shared.serializeBet(betInfo: betDictionary)
+                                               
+                                                newBetHistory.insert(serializedBet, at: 0)
+                                            }
                                             
                                             FirebaseAuth.shared.setCurrentUser(userName: verifiedUserName,
                                                                                userEmail: verifiedEmailAddress,
                                                                                profileRef: verifiedUserProfilePicRef,
-                                                                               betHistory: verifiedUserBetHistory,
+                                                                               betHistory: newBetHistory,
                                                                                balances: verifiedUserBalances)
                                             
+                                          
                                             self.performSegue(withIdentifier: "loginTabBarSegue", sender: self)
                                             
                                         }
@@ -296,7 +261,6 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
             
             self.present(alertController, animated: true, completion: nil)
             
-            
             /// this is nil even when signed into another device.  handle through firebase db
             //            if Auth.auth().currentUser == nil {
             ///
@@ -331,9 +295,7 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        print("touch in login")
-        
+       
         self.view.endEditing(true)
         
         UIView.animate(withDuration: 0.5, animations: {() in

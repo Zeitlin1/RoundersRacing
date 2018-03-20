@@ -14,6 +14,7 @@ struct Bet {
     var raceID: String = ""
     var betID: String = ""
     var betDate: String = ""
+    var selection: String = ""
     var result: Bool = false
     
 }

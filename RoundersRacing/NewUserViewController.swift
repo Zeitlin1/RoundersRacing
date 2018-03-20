@@ -281,6 +281,8 @@ class NewUserViewController: UIViewController, UITextFieldDelegate {
             "createDate"         : String(describing: NSDate()),
             
             "tokenBalances"      : ["starterTokens": 5.00, "premiumTokens": 0], // <----- this is fronted to each new user.  (think of this as starting weapons)
+            // this is also going to be the minimum?  No.
+            "betHistory"         : [["beginBetHistory": "beginBetHistory"]],
             
             "profilePicRef"      : "",
             

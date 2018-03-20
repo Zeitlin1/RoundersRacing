@@ -23,8 +23,6 @@ class FirebaseAuth {
     
      var currentUserProfilePicRef: String?
     
-     var currentUserBetHistory: [String: Any]?
-    
     private init(){
         
         print("FirebaseAuth Online")
@@ -42,7 +40,7 @@ class FirebaseAuth {
         
     }
     
-    final func setCurrentUser(userName: String, userEmail: String, profileRef: String, betHistory: [String: Any], balances: [String: Double]) {
+    final func setCurrentUser(userName: String, userEmail: String, profileRef: String, betHistory: [Bet], balances: [String: Double]) {
         
         currentUserName = userName
         
@@ -50,15 +48,13 @@ class FirebaseAuth {
         
         currentUserProfilePicRef = profileRef
         
-        currentUserBetHistory = betHistory
+        SharedBetManager.shared.betHistory = betHistory
         
         SharedBetManager.shared.userBalances = balances
         
     }
     
     final func resetCurrentUser() {
-    
-        print("reset user begin")
         
         currentUserName = nil
     
@@ -66,18 +62,49 @@ class FirebaseAuth {
     
         currentUserProfilePicRef = nil
     
-        currentUserBetHistory = nil
+        SharedBetManager.shared.betHistory = []
     
         SharedBetManager.shared.userBalances = [:]
         
-        print("reset user end")
     }
     
     private func deserializeBet(bet: Bet) -> [String: Any] {
         
-        let deserializedBet = ["": "", "": "", "": "", "": "",]
+        let deserializedBet: [String: Any] = ["betValue": bet.betValue, "raceID": "\(bet.raceID)", "betID": "\(bet.betID)", "betDate": "\(bet.betDate)", "selection": "\(bet.selection)", "result": "\(bet.result)"]
         
         return deserializedBet
+    }
+    
+    func serializeBet(betInfo: [String: Any]) -> Bet {
+        
+        var serializedBet = Bet()
+        
+        if let betValue = betInfo["betValue"] as? Double {
+         
+            serializedBet.betValue = betValue
+        }
+        if let raceID = betInfo["raceID"] as? String {
+       
+            serializedBet.raceID = raceID
+        }
+        if let betID = betInfo["betID"] as? String {
+      
+            serializedBet.betID = betID
+        }
+        if let betDate = betInfo["betDate"] as? String {
+            
+            serializedBet.betDate = betDate
+        }
+        if let selection = betInfo["selection"] as? String {
+            
+            serializedBet.selection = selection
+        }
+        if let result = betInfo["result"] as? Bool {
+            
+            serializedBet.result = result
+        }
+        
+        return serializedBet
     }
     
     final func updateUserBetInfo(userBalances: [String: Double], betHistory: [Bet], completion: @escaping ()-> Void) {
@@ -92,8 +119,11 @@ class FirebaseAuth {
         
         for bet in betHistory {
             
-            newBetHistory.insert(deserializeBet(bet: bet), at: 0)
+            let newDeserializedBet = deserializeBet(bet: bet)
+            
+            newBetHistory.insert(newDeserializedBet, at: 0)
         }
+        
         /// serialize each bet in the history into a full dictionary and then send that dictionary up into FB
         let updatedUserData: [String : Any] = [
             
