@@ -70,10 +70,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		922F0CAA2061B4F70004F4C2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9260EF3F20617A5500E7DD9C /* NetworkCommunicator.swift */,
+				9260EF3D2061703800E7DD9C /* NetworkCheck.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		922F0CAB2061B5050004F4C2 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				9260EF2F20615A2400E7DD9C /* FirebaseAuth.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		922F0CAC2061B5130004F4C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9260EF3320615BAA00E7DD9C /* LoginScreenViewController.swift */,
+				9260EF3120615AAC00E7DD9C /* NewUserViewController.swift */,
+				9260EF3520615C9100E7DD9C /* ResetEmailViewController.swift */,
+				92868D9620602F2900D2EEAB /* ViewController.swift */,
+				9260EF3B20616B2500E7DD9C /* SettingsViewController.swift */,
+				92B3E6FB2060541D00114E72 /* PlaceBetViewController.swift */,
+				92B3E6F92060437B00114E72 /* VideoViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		922F0CAD2061B5230004F4C2 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				92B3E6FF2060586B00114E72 /* SharedBetManager.swift */,
+				92B3E70120607C4100114E72 /* SharedBetLogic.swift */,
+			);
+			path = Singletons;
+			sourceTree = "<group>";
+		};
+		922F0CAE2061B5320004F4C2 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				9260EF4120617F1700E7DD9C /* Bet.swift */,
+				92B3E7032060890F00114E72 /* SelectRacerTableViewCell.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		922F0CAF2061B5400004F4C2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9260EF3720615CCE00E7DD9C /* Extensions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		922F0CB02061B54B0004F4C2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				92868D9D20602F2900D2EEAB /* LaunchScreen.storyboard */,
+				92868D9820602F2900D2EEAB /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		922F0CB12061B5550004F4C2 /* PLists */ = {
+			isa = PBXGroup;
+			children = (
+				9260EF3920615E0D00E7DD9C /* GoogleService-Info.plist */,
+				92868DA020602F2900D2EEAB /* Info.plist */,
+			);
+			path = PLists;
+			sourceTree = "<group>";
+		};
 		92868D8820602F2900D2EEAB = {
 			isa = PBXGroup;
 			children = (
 				92868D9320602F2900D2EEAB /* RoundersRacing */,
+				92868D9B20602F2900D2EEAB /* Assets.xcassets */,
 				92868D9220602F2900D2EEAB /* Products */,
 				B5C9124DFD57738EFBBFBE13 /* Pods */,
 				D0483B4D9A1CDE8CD5F1D6B1 /* Frameworks */,
@@ -92,26 +168,14 @@
 			isa = PBXGroup;
 			children = (
 				92868D9420602F2900D2EEAB /* AppDelegate.swift */,
-				92868D9620602F2900D2EEAB /* ViewController.swift */,
-				9260EF2F20615A2400E7DD9C /* FirebaseAuth.swift */,
-				9260EF3120615AAC00E7DD9C /* NewUserViewController.swift */,
-				9260EF3F20617A5500E7DD9C /* NetworkCommunicator.swift */,
-				9260EF3D2061703800E7DD9C /* NetworkCheck.swift */,
-				9260EF4120617F1700E7DD9C /* Bet.swift */,
-				9260EF3320615BAA00E7DD9C /* LoginScreenViewController.swift */,
-				9260EF3B20616B2500E7DD9C /* SettingsViewController.swift */,
-				92B3E6FF2060586B00114E72 /* SharedBetManager.swift */,
-				92B3E70120607C4100114E72 /* SharedBetLogic.swift */,
-				92B3E6FB2060541D00114E72 /* PlaceBetViewController.swift */,
-				9260EF3520615C9100E7DD9C /* ResetEmailViewController.swift */,
-				9260EF3720615CCE00E7DD9C /* Extensions.swift */,
-				92B3E6F92060437B00114E72 /* VideoViewController.swift */,
-				92B3E7032060890F00114E72 /* SelectRacerTableViewCell.swift */,
-				92868D9820602F2900D2EEAB /* Main.storyboard */,
-				92868D9B20602F2900D2EEAB /* Assets.xcassets */,
-				92868D9D20602F2900D2EEAB /* LaunchScreen.storyboard */,
-				9260EF3920615E0D00E7DD9C /* GoogleService-Info.plist */,
-				92868DA020602F2900D2EEAB /* Info.plist */,
+				922F0CAC2061B5130004F4C2 /* Views */,
+				922F0CAB2061B5050004F4C2 /* Firebase */,
+				922F0CAD2061B5230004F4C2 /* Singletons */,
+				922F0CAA2061B4F70004F4C2 /* Networking */,
+				922F0CAE2061B5320004F4C2 /* Objects */,
+				922F0CAF2061B5400004F4C2 /* Utilities */,
+				922F0CB02061B54B0004F4C2 /* Storyboards */,
+				922F0CB12061B5550004F4C2 /* PLists */,
 			);
 			path = RoundersRacing;
 			sourceTree = "<group>";
@@ -412,7 +476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92AXCX858Q;
-				INFOPLIST_FILE = RoundersRacing/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RoundersRacing/PLists/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.RoundersRacing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,7 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92AXCX858Q;
-				INFOPLIST_FILE = RoundersRacing/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RoundersRacing/PLists/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.RoundersRacing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
