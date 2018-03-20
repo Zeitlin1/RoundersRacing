@@ -15,6 +15,8 @@
 		92B3E6FA2060437B00114E72 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B3E6F92060437B00114E72 /* VideoViewController.swift */; };
 		92B3E6FC2060541D00114E72 /* PlaceBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B3E6FB2060541D00114E72 /* PlaceBetViewController.swift */; };
 		92B3E7002060586B00114E72 /* SharedBetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B3E6FF2060586B00114E72 /* SharedBetManager.swift */; };
+		92B3E70220607C4100114E72 /* SharedBetLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B3E70120607C4100114E72 /* SharedBetLogic.swift */; };
+		92B3E7042060890F00114E72 /* SelectRacerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B3E7032060890F00114E72 /* SelectRacerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		92B3E6F92060437B00114E72 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		92B3E6FB2060541D00114E72 /* PlaceBetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceBetViewController.swift; sourceTree = "<group>"; };
 		92B3E6FF2060586B00114E72 /* SharedBetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedBetManager.swift; sourceTree = "<group>"; };
+		92B3E70120607C4100114E72 /* SharedBetLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedBetLogic.swift; sourceTree = "<group>"; };
+		92B3E7032060890F00114E72 /* SelectRacerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRacerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +67,10 @@
 				92868D9420602F2900D2EEAB /* AppDelegate.swift */,
 				92868D9620602F2900D2EEAB /* ViewController.swift */,
 				92B3E6FF2060586B00114E72 /* SharedBetManager.swift */,
+				92B3E70120607C4100114E72 /* SharedBetLogic.swift */,
 				92B3E6FB2060541D00114E72 /* PlaceBetViewController.swift */,
 				92B3E6F92060437B00114E72 /* VideoViewController.swift */,
+				92B3E7032060890F00114E72 /* SelectRacerTableViewCell.swift */,
 				92868D9820602F2900D2EEAB /* Main.storyboard */,
 				92868D9B20602F2900D2EEAB /* Assets.xcassets */,
 				92868D9D20602F2900D2EEAB /* LaunchScreen.storyboard */,
@@ -147,7 +153,9 @@
 			files = (
 				92B3E7002060586B00114E72 /* SharedBetManager.swift in Sources */,
 				92868D9720602F2900D2EEAB /* ViewController.swift in Sources */,
+				92B3E70220607C4100114E72 /* SharedBetLogic.swift in Sources */,
 				92868D9520602F2900D2EEAB /* AppDelegate.swift in Sources */,
+				92B3E7042060890F00114E72 /* SelectRacerTableViewCell.swift in Sources */,
 				92B3E6FC2060541D00114E72 /* PlaceBetViewController.swift in Sources */,
 				92B3E6FA2060437B00114E72 /* VideoViewController.swift in Sources */,
 			);

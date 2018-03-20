@@ -16,8 +16,17 @@ class VideoViewController: UIViewController, WKUIDelegate {
     @IBOutlet weak var backButton: UIButton!
     
     @IBAction func backButtonPushed(_ sender: UIButton) {
+        
+       self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func makeWinOrLoss(_ sender: UIButton) {
+        
+        print(SharedBetLogic.shared.determineResult())
+        // handle win or loss conditionals here (ie. balance xfer)
         self.dismiss(animated: true) {}
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
