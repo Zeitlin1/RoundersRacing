@@ -31,7 +31,14 @@ class SharedBetLogic {
             let prize = SharedBetManager.shared.potValue / (SharedBetManager.shared.potSize / 3)
             
             if SharedBetManager.shared.currentBet {
-                SharedBetManager.shared.userBalance += prize
+                
+                if let oldBalance = SharedBetManager.shared.userBalances["starterTokens"] {
+                    
+                    let newBalance = oldBalance + prize
+                    
+                    SharedBetManager.shared.userBalances["starterTokens"] = newBalance
+                    
+                }
             }
             
             SharedBetManager.shared.resetPot()
@@ -58,4 +65,5 @@ class SharedBetLogic {
             
         }
     }
+    
 }

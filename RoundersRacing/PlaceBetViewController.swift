@@ -9,13 +9,13 @@
 import UIKit
 
 class PlaceBetViewController: UIViewController {
-
+    
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var selectionLabel: UILabel!
     
     @IBOutlet weak var lineupLabel: UILabel!
- 
+    
     @IBOutlet weak var placeBetButton: UIButton!
     
     @IBAction func backButtonPushed(_ sender: UIButton) {
@@ -26,23 +26,25 @@ class PlaceBetViewController: UIViewController {
     
     @IBAction func placeBetButtonPushed(_ sender: UIButton) {
         // place new bet in shared mngr
-        
-        if SharedBetManager.shared.userBalance > 0 && SharedBetManager.shared.selectedRacer != nil {
-            SharedBetManager.shared.placeNewBet {
-                self.dismiss(animated: true) {
-                    print("current bet has been placed \(SharedBetManager.shared.currentBet)")
+        if let starterTokenBalance = SharedBetManager.shared.userBalances["starterTokens"] {
+            if starterTokenBalance > 0 && SharedBetManager.shared.selectedRacer != nil {
+                SharedBetManager.shared.placeNewBet {
+                    self.dismiss(animated: true) {
+                        print("current bet has been placed \(SharedBetManager.shared.currentBet)")
+                    }
                 }
-            }
-        } else if SharedBetManager.shared.selectedRacer == nil {
-            UIView.animate(withDuration: 0.25, animations: {
-                self.placeBetButton.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
-            }, completion: { (success) in
+            } else if SharedBetManager.shared.selectedRacer == nil {
                 UIView.animate(withDuration: 0.25, animations: {
-                    self.placeBetButton.transform = CGAffineTransform.identity
+                    self.placeBetButton.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+                }, completion: { (success) in
+                    UIView.animate(withDuration: 0.25, animations: {
+                        self.placeBetButton.transform = CGAffineTransform.identity
+                    })
                 })
-            })
+            }
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +53,7 @@ class PlaceBetViewController: UIViewController {
         tableViewOutlet.dataSource = self
         
         tableViewOutlet.translatesAutoresizingMaskIntoConstraints = false
+        
         let horizontalConstraint = NSLayoutConstraint(item: tableViewOutlet,
                                                       attribute: NSLayoutAttribute.centerX,
                                                       relatedBy: NSLayoutRelation.equal,
@@ -59,12 +62,12 @@ class PlaceBetViewController: UIViewController {
                                                       multiplier: 1,
                                                       constant: 0)
         let topConstraint = NSLayoutConstraint(item: tableViewOutlet,
-                                                    attribute: NSLayoutAttribute.top,
-                                                    relatedBy: NSLayoutRelation.equal,
-                                                    toItem: lineupLabel,
-                                                    attribute: NSLayoutAttribute.bottom,
-                                                    multiplier: 1,
-                                                    constant: 0)
+                                               attribute: NSLayoutAttribute.top,
+                                               relatedBy: NSLayoutRelation.equal,
+                                               toItem: lineupLabel,
+                                               attribute: NSLayoutAttribute.bottom,
+                                               multiplier: 1,
+                                               constant: 0)
         let widthConstraint = NSLayoutConstraint(item: tableViewOutlet,
                                                  attribute: NSLayoutAttribute.width,
                                                  relatedBy: NSLayoutRelation.equal,
@@ -80,7 +83,7 @@ class PlaceBetViewController: UIViewController {
                                                   multiplier: 1,
                                                   constant: -20)
         view.addConstraints([horizontalConstraint, topConstraint, widthConstraint, bottomConstraint])
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -93,17 +96,17 @@ class PlaceBetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension PlaceBetViewController: UITableViewDelegate, UITableViewDataSource {
